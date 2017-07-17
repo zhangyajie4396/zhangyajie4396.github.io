@@ -79,7 +79,7 @@ algolia:
   apiKey: '5ec26baf5ce7bc127d75cd7c8659b4d8'
   adminApiKey: '06a57397cd4d91c0d965c26553e3b959'
   indexName: 'zhangyajie'
-  chunkSize: 5000
+  chunkSize: 500000000
   
   
 
