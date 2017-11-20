@@ -1,0 +1,934 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="知识," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="iReport介绍 iReport是为JasperReports设计的强大的，直观的，易于使用的可视化报表设计器，为win32平台编写。允许用户可视化地编辑XML JasperDesign文件，可以和其它数据库进行JDBC通信。  再设计模板时可以以HTML，PDF，XML方式预览，用它生成的文件有.jrxml和.ja">
+<meta name="keywords" content="知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="eclipse+iReport导出报表制作流程">
+<meta property="og:url" content="http://yoursite.com/2017/11/20/iReport/index.html">
+<meta property="og:site_name" content="Penguin">
+<meta property="og:description" content="iReport介绍 iReport是为JasperReports设计的强大的，直观的，易于使用的可视化报表设计器，为win32平台编写。允许用户可视化地编辑XML JasperDesign文件，可以和其它数据库进行JDBC通信。  再设计模板时可以以HTML，PDF，XML方式预览，用它生成的文件有.jrxml和.jasper两种文件。  jrxml：是可视化编辑的xml文件；  jasper：经">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/1.jpg">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170703105905.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/2.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/3.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/4.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/5.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport/6.png6.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport7.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport/8.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport9.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport/10.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport/11.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport/12.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport/13.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport/14.png">
+<meta property="og:image" content="http://osar4k97c.bkt.clouddn.com/ireport/15.png">
+<meta property="og:updated_time" content="2017-11-20T06:57:14.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="eclipse+iReport导出报表制作流程">
+<meta name="twitter:description" content="iReport介绍 iReport是为JasperReports设计的强大的，直观的，易于使用的可视化报表设计器，为win32平台编写。允许用户可视化地编辑XML JasperDesign文件，可以和其它数据库进行JDBC通信。  再设计模板时可以以HTML，PDF，XML方式预览，用它生成的文件有.jrxml和.jasper两种文件。  jrxml：是可视化编辑的xml文件；  jasper：经">
+<meta name="twitter:image" content="http://osar4k97c.bkt.clouddn.com/1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'RP4JLFFEI2',
+      apiKey: '5ec26baf5ce7bc127d75cd7c8659b4d8',
+      indexName: 'zhangyajie',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"输入关键字","hits_empty":"没有找到与 [${query}]相关的内容","hits_stats":"${hits}条相关记录，共耗时 ${time}秒"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/11/20/iReport/"/>
+
+
+
+
+
+  <title>eclipse+iReport导出报表制作流程 | Penguin</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Penguin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+		 
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/20/iReport/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mr Zhang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/image/Penguins.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Penguin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">eclipse+iReport导出报表制作流程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-20T14:57:14+08:00">
+                2017-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/11/20/iReport/" class="leancloud_visitors" data-flag-title="eclipse+iReport导出报表制作流程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="iReport介绍"><a href="#iReport介绍" class="headerlink" title="iReport介绍"></a>iReport介绍</h3><ul>
+<li><p>iReport是为JasperReports设计的强大的，直观的，易于使用的可视化报表设计器，为win32平台编写。允许用户可视化地编辑XML JasperDesign文件，可以和其它数据库进行JDBC通信。<br></p>
+</li>
+<li><p>再设计模板时可以以HTML，PDF，XML方式预览，用它生成的文件有.jrxml和.jasper两种文件。</p>
+</li>
+<li><p>jrxml：是可视化编辑的xml文件；</p>
+</li>
+<li><p>jasper：经编译后生成的类文件，即报表模板文件。</p>
+<h3 id="iReport的输出格式"><a href="#iReport的输出格式" class="headerlink" title="iReport的输出格式"></a>iReport的输出格式</h3></li>
+<li>其预览输出格式有：PDF，HTML，CSV。JAVA2D，EXCEL，纯文本，JRView。<h3 id="报表的动态对象变量、参数、字段"><a href="#报表的动态对象变量、参数、字段" class="headerlink" title="报表的动态对象变量、参数、字段"></a>报表的动态对象变量、参数、字段</h3></li>
+<li><p>字段Fields：是从数据库抽取出来的，在报表中出现的数据库内容。$F</p>
+</li>
+<li><p>参数Parameters：你写的应用需要提供给报表的入口。 $P</p>
+</li>
+<li><p>变量Variables：报表中一些逻辑运算的表现。 $V</p>
+</li>
+<li><p>每个对象的定义格式如下： $V{variablesName}</p>
+<h3 id="运行时需要-jasper文件；编译：把-jrxml-gt-jasper文件。"><a href="#运行时需要-jasper文件；编译：把-jrxml-gt-jasper文件。" class="headerlink" title="运行时需要.jasper文件；编译：把.jrxml-&gt;.jasper文件。"></a>运行时需要.jasper文件；编译：把.jrxml-&gt;.jasper文件。</h3><h3 id="具体使用方法"><a href="#具体使用方法" class="headerlink" title="具体使用方法"></a>具体使用方法</h3></li>
+<li>安装iReport并打开。</li>
+<li>新建模板：点击左上角【文件】-new-选择模版-点击open this Template-保存路径-完成。<br><img src="http://osar4k97c.bkt.clouddn.com/1.jpg" alt=""></li>
+<li>完成后会在对应路径生成一个.jrxml文件，点击如图所示按钮(编译)，会生成一个.jasper文件。把生成的.jrxml和.jasper文件放到项目对应的文件里即可(<font color="red">注：最后完成操作时要点击编译按钮才会更新最新的文件，不编译不奏效</font>)。<br><br><img src="http://osar4k97c.bkt.clouddn.com/ireport/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20170703105905.png" alt=""></li>
+<li>工作面板：我们一般用的有标题栏(Title)，详情(Detail1)，汇总栏(Summary)。在对应的栏点击右键-Delete Band即可删除不用的栏。<br><img src="http://osar4k97c.bkt.clouddn.com/2.png" alt=""></li>
+<li><p>点击【窗口】-【组件面板】显示组件面板，红色框内的为常用项，具体操作如图中标注所示<br><img src="http://osar4k97c.bkt.clouddn.com/3.png" alt=""></p>
+</li>
+<li><p>静态字段需要自己手写，动态字段可以直接从实体类中获取。点击【工具】-【选项】弹出选项框，操作如下图所示，点击确定后会导入class文件。<br><img src="http://osar4k97c.bkt.clouddn.com/4.png" alt=""></p>
+</li>
+<li>导入class文件后，操作如下(第4步到自己的eclipse中复制对应的类名即可)<br><img src="http://osar4k97c.bkt.clouddn.com/5.png" alt=""></li>
+<li>下图所示，即可获取后台字段。也可直接拖拽Fields中的属性到工作面板<br><img src="http://osar4k97c.bkt.clouddn.com/ireport/6.png6.png" alt=""></li>
+<li><p>获取属性中的list集合数据。拖动List到面板中会默认生成dataset1,再拖动会生成dataset2,以此类推，箭头所指的地方可以修改dataset。详细步骤如图所示<br><img src="http://osar4k97c.bkt.clouddn.com/ireport7.png" alt=""></p>
+</li>
+<li><p>从后台获取list中的属性：右击dataset1-Edit Query，弹出框，操作如第6步（<font color="red">注：dataset1与上一步中箭头所指的dataset要一致</font>）<br><img src="http://osar4k97c.bkt.clouddn.com/ireport/8.png" alt=""></p>
+</li>
+<li>添加边框如图所示。点击【窗口】-【属性】可以修改样式<br><img src="http://osar4k97c.bkt.clouddn.com/ireport9.png" alt=""><br><br><img src="http://osar4k97c.bkt.clouddn.com/ireport/10.png" alt=""><br></li>
+<li>$F所取的数据为Fields中的数据，$P所取的数据为Parameters中的数据。Fields如何添加属性上面已经做了介绍了，Parameter添加属性直接右键即可，Parameter中的属性与后台代码中的model.addAttribute(“name”,123)里的name保持一致。汇总栏(Summary)一般取的是Parameter里的数据。<br><img src="http://osar4k97c.bkt.clouddn.com/ireport/11.png" alt=""><br></li>
+<li>编译后先预览，如果预览成功再复制到eclipse中<br><img src="http://osar4k97c.bkt.clouddn.com/ireport/12.png" alt=""><h3 id="iReport处理中文乱码"><a href="#iReport处理中文乱码" class="headerlink" title="iReport处理中文乱码"></a>iReport处理中文乱码</h3></li>
+<li>将亚洲语言包” iTextAsian.jar,”复制到iReport安装目录下的iReport-5.1.0\ireport\modules\ext下</li>
+<li>将iTextAsian.jar添加到iReport的classpath中,在iReport中选择【工具】 【选项】菜单,点击出现如下界面，在Classpath中增加JAR包(iTextAsian.jar)即可。如图<br><img src="http://osar4k97c.bkt.clouddn.com/ireport/13.png" alt=""></li>
+<li>设置报表上各显示对象的相关属性,各属性设置说明如下: <br><br>  Font    name:    宋体 (中文字体) <br><br>  PDF font name:   STSong-Light <br><br>  PDF  Encoding:  UniGB-UCS2-H(Chinese Siplified) <br><br>  PDF   Embeded: √<br><br><img src="http://osar4k97c.bkt.clouddn.com/ireport/14.png" alt=""><br><br><img src="http://osar4k97c.bkt.clouddn.com/ireport/15.png" alt=""></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+<div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/image/weixin_20170630095108.jpg" alt="Mr Zhang wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/知识/" rel="tag"># 知识</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/20/hexo_youyan/" rel="next" title="hexo+next添加友言评论">
+                <i class="fa fa-chevron-left"></i> hexo+next添加友言评论
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/20/webService/" rel="prev" title="WebService简单教程">
+                WebService简单教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/image/Penguins.jpg"
+               alt="Mr Zhang" />
+          <p class="site-author-name" itemprop="name">Mr Zhang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://portal.qiniu.com/create" target="_blank" title="七牛云存储">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  七牛云存储
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#iReport介绍"><span class="nav-number">1.</span> <span class="nav-text">iReport介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iReport的输出格式"><span class="nav-number">2.</span> <span class="nav-text">iReport的输出格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报表的动态对象变量、参数、字段"><span class="nav-number">3.</span> <span class="nav-text">报表的动态对象变量、参数、字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时需要-jasper文件；编译：把-jrxml-gt-jasper文件。"><span class="nav-number">4.</span> <span class="nav-text">运行时需要.jasper文件；编译：把.jrxml->.jasper文件。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体使用方法"><span class="nav-number">5.</span> <span class="nav-text">具体使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#iReport处理中文乱码"><span class="nav-number">6.</span> <span class="nav-text">iReport处理中文乱码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr Zhang</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2137743"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("3S5SYJGBUao8i4g07Ma81Er7-gzGzoHsz", "U4srklGwg8CpdioAsNekz3q7");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
